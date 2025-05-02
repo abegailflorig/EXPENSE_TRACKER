@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Lato", sans-serif;
+        }
+        body {
+            background-color: #66D2CE;
+        }
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #66D2CE;
+            padding: 20px 20px;
+            margin: 20px;
+        }
+
+        .icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header img {
+            width: 44px;
+            height: auto;
+        }
+
+        /* Expenses Section */
+        .expenses {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 10px auto;
+            width: 80%;
+        }
+
+        .progress-label, .total-label {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 12px;
+            background: #eee;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: black;
+            border-radius: 10px;
+        }
+
+        /* Status Message */
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bolder;
+            margin-bottom: 15px;
+        }
+
+        .check-icon {
+            width: 30px;
+            height: auto;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            border-radius: 120px 120px 0 0;
+            padding: 100px;
+            margin: 0px;
+        }
+        .box1 img, .box2 img, .row img {
+            width: 40px;
+            height: 50px;
+        }
+        .box1{
+            background-color: #51DE9A;
+            border-radius: 25px;
+            padding: 20px;
+            height: 200px;
+            width: 260px;
+            text-align:left;
+            color: white;
+            
+        }
+        .box2 {
+            display: flex;
+            align-items: center;
+            background-color: #51DE9A;
+            border-radius: 25px;
+            padding: 20px;
+            width: 380px;
+            color: white;
+            position: relative;
+        }
+
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            text-align: center;
+        }
+
+        .progress-circle {
+            width: 60px;
+            height: 60px;
+            background: conic-gradient(#004D40 40%, white 40%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: black;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .divider {
+            width: 2px;
+            height: 100%;
+            background-color: white;
+            margin: 0 10px;
+        }
+
+        .right-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .expense {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        hr {
+            border: 0.5px solid white;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        .transactions {
+            background: white;
+            padding: 10px; 
+        }
+        .bottom{
+            background-color: white;
+        }
+        .transaction {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .transaction:last-child {
+            border-bottom: none;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            background: #28b485;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .footer div {
+            text-align: center;
+            color: white;
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hello, Welcome</h1>
+        <div class="icons">
+            <img src="notiflogo.png" alt="Notification Icon">
+            <img src="miclogo.png" alt="Microphone Icon">
+        </div>
+    </div>
+    <div class="expenses">
+        <p class="title">Total Expenses</p>
+        <h2 class="amount">&#8369; 9,670.00</h2>
+        
+        <div class="progress-container">
+            <span class="progress-label">35%</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 35%;"></div>
+            </div>
+            <span class="total-label">&#8369; 50,000.00</span>
+        </div>
+    
+        <div class="status">
+            <img src="check.png" alt="Check Icon" class="check-icon">
+            <p>35% Of Your Expenses, Looks Good</p>
+        </div>
+    </div>    
+    <div class="container">
+        <div class="box1">
+            <img src="cash.png" alt="Cash"/>
+            <p>Cash:</p>
+            <h3>&#8369; 40,330.00</h3>
+        </div>
+        <div class="box2">
+            <div class="left-section">
+                    <div class="progress-circle">
+                        <span>40%</span>
+                    </div>
+                    <p>Savings on Goals</p>
+                </div>
+            
+                <div class="divider"></div>
+            
+                <div class="right-section">
+                    <p class="title">Last month:</p>
+                    <div class="expense">
+                        <img src="cash.png" alt="wallet icon" class="icon"/>
+                        <span>&#8369; 32,530.00</span>
+                    </div>
+                    <hr>
+                    <div class="expense">
+                        <img src="fork.png" alt="food icon" class="icon"/>
+                        <span>&#8369; 12,000.00</span>
+                    </div>
+                </div>      
+        </div>
+    </div>
+    <div class="bottom">
+        <select id="filter">
+            <option>Recent</option>
+            <option>Past day</option>
+        </select>
+        <div class="transactions">
+            <div class="transaction"><span>Rent</span><span>&#8369; 3,500.00</span></div>
+            <div class="transaction"><span>Shopping</span><span>&#8369; 1,980.00</span></div>
+            <div class="transaction"><span>Transportation</span><span>&#8369; 500.00</span></div>
+            <div class="transaction"><span>Food</span><span>&#8369; 1,200.00</span></div>
+        </div>
+    
+    <div class="footer">
+        <div>Home</div>
+        <div>Stats</div>
+        <div>Budget</div>
+        <div>Profile</div>
+    </div>
+    </div>
+</body>
+</html>
